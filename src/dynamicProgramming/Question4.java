@@ -20,7 +20,7 @@ public class Question4 {
 
     //Tabulation TC-O(N*TargetSum)
 
-    private static boolean targetsumTab(int nums[],int targetSum){
+    private static boolean targetsumTab(int[] nums,int targetSum){
         int n=nums.length;
         //Create dp Array
         boolean[][] dp=new boolean[n+1][targetSum+1];
