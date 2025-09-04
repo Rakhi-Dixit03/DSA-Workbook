@@ -97,7 +97,6 @@ public class Question4 {
 
     private static boolean targetSumOptimized(int[] nums,int targetSum){
 
-        int n=nums.length;
         boolean[] dp=new boolean[targetSum+1];
         dp[0]=true;
 
