@@ -8,13 +8,13 @@ public class Question4 {
 
     public static void main(String[] args) {
        int[] nums={4,2,7,1,3};
-       int targetSum=20;
+       int targetSum=18;
        int n=nums.length;
        Boolean[][] memo=new Boolean[n+1][targetSum+1];
 
         System.out.println("Target Sum through Tabulation : "+targetsumTab(nums,targetSum));
         System.out.println("Target Sum through Memoization : "+targetsumMemo(nums,targetSum,memo,n));
-
+        System.out.println("Target Sum through Tabulation Optimized one  : "+targetSumOptimized(nums,targetSum));
     }
 
 
@@ -93,5 +93,25 @@ public class Question4 {
 
         }
 
+    }
+
+    private static boolean targetSumOptimized(int[] nums,int targetSum){
+
+        int n=nums.length;
+        boolean[] dp=new boolean[targetSum+1];
+        dp[0]=true;
+
+        for(int x : nums){
+
+             for(int s=targetSum;s>=x;s--){
+                 if(dp[s-x]) dp[s]=true;
+
+             }
+
+             //Early optimization
+            if(dp[targetSum])return true;
+
+        }
+        return dp[targetSum];
     }
 }

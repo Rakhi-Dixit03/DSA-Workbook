@@ -20,10 +20,10 @@ public class Question3 {
             Arrays.fill(row,-1);
         }
 
-        System.out.println("Maximum Profit through recursive solution :  "+knapsackRecursive(val,wt,W,n));
-        System.out.println("Maximum Profit through memoization solution :  "+knapsackMemo(val,wt,W,n,dp));
-        System.out.println("Maximum Profit through tabulation solution :  "+knapsackTab(val,wt,W));
-
+        System.out.println("Maximum Profit through recursive solution : "+knapsackRecursive(val,wt,W,n));
+        System.out.println("Maximum Profit through memoization solution : "+knapsackMemo(val,wt,W,n,dp));
+        System.out.println("Maximum Profit through tabulation solution : "+knapsackTab(val,wt,W));
+        System.out.println("Maximum Profit through tabulation Optimized solution : "+knapsackOptimized(val,wt,W));
 
     }
 
@@ -152,6 +152,29 @@ public class Question3 {
         }
 
         return dp[n][W];
+    }
+
+
+
+    private static int knapsackOptimized(int[] val,int[] wt,int W){
+
+        int n=val.length;
+
+        int[] dp=new int[W+1];
+
+        dp[0]=0;
+
+        for(int i=0;i<n;i++){
+
+            //Decreasing loop to avoid taking same item multiple times
+            for(int s= W;s>=wt[i];s--){
+
+                dp[s]=Math.max(dp[s],val[i]+dp[s-wt[i]]);
+
+            }
+
+        }
+        return dp[W];
     }
 
 }

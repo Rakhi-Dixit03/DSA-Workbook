@@ -1,7 +1,7 @@
 package dynamicProgramming;
 
 import java.util.Arrays;
-
+//Unbounded Knapsack
 public class Question5 {
 
     public static void main(String[] args) {
@@ -17,10 +17,9 @@ public class Question5 {
             Arrays.fill(row,-1);
         }
 
-
         System.out.println("Through Tabulation Maximum Profit is : "+unboundKnapSack(val,wt,W));
         System.out.println("Through Memoization Maximum Profit is : "+unboundMemo(val,wt,W,memo,n));
-
+        System.out.println("Through Tabulation Optimized approach Maximum Profit is : "+unboundKnapSackOptimized(val,wt,W));
     }
 
     private static int unboundKnapSack(int[] val,int[] wt,int W){
@@ -89,6 +88,28 @@ public class Question5 {
            return  memo[n][W]=exclude;
         }
 
+    }
+
+    //Through optimised one
+    private static int unboundKnapSackOptimized(int[] val,int[] wt,int W){
+
+        int n=val.length;
+
+       //1D Array
+        int[] dp=new int[W+1];
+
+        dp[0]=0;
+
+        for(int i=0;i<n;i++){
+            //Increasing order
+            for(int s=wt[i];s<=W;s++){
+
+                dp[s]=Math.max(dp[s],val[i]+dp[s-wt[i]]);
+            }
+
+        }
+
+        return dp[W];
     }
 
 }
