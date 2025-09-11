@@ -35,7 +35,6 @@ public class SortColors {
 
     //Better Approach Using frequency count variables since there are only three numbers 0,1,2
     public static void sortNumbers2(int[] arr){
-        int n=arr.length;
 
         int zeroes=0;
         int ones=0;
