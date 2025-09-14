@@ -42,7 +42,7 @@ public class LongestSubstring {
     //Using HashSet
     public static int longSubstring1(String s){
 
-        Set<Character> set=new HashSet<>();//Covering all ASCII Characters
+        Set<Character> set=new HashSet<>();
         int l=0,r=0,maxLen=0;
         int n=s.length();
 
@@ -64,7 +64,5 @@ public class LongestSubstring {
 
         return maxLen;
     }
-
-
 
 }
