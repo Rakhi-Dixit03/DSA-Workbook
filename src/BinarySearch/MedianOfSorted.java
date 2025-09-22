@@ -10,7 +10,8 @@ public class MedianOfSorted {
         int m=array1.length;
         int n=array2.length;
         System.out.println("Median of 2 sorted Arrays using Brute Force  is : "+medianOfSorted1(array1,array2,m,n));
-        System.out.println("Median of 2 sorted Arrays using Better Approach is : "+medianOfSorted1(array1,array2,m,n));
+        System.out.println("Median of 2 sorted Arrays using Better Approach is : "+medianOfSorted2(array1,array2,m,n));
+        System.out.println("Median of 2 sorted Arrays using Better Approach is : "+medianOfSorted3(array1,array2));
     }
 
 
@@ -55,7 +56,7 @@ public class MedianOfSorted {
 
     }
 
-    //Using Brute Force TC-O(M+N) SC-(1)
+    //Using Better Approach TC-O(M+N) SC-(1)
     public static double medianOfSorted2(int[] nums1,int[] nums2,int m,int n){
 
         int size=m+n;
@@ -138,17 +139,61 @@ public class MedianOfSorted {
     }
 
 
-    //Using Brute Force TC-O(Log(M+N)) SC-O(1)
+    //Using Optimal Solution TC-O(Log(M+N)) SC-O(1)
 
-    public static double medianOfSorted3(int[] nums1,int nums2,int m,int n){
-
-
+    public static double medianOfSorted3(int[] nums1,int[] nums2){
 
 
+        if(nums1.length>nums2.length){
+            return medianOfSorted3( nums2,nums1);//Ensuring nums1 is always smaller
+        }
+
+        int m=nums1.length;
+        int n=nums2.length;
+
+        int l=0;
+        int h=m;
+
+        while(l<=h){
+
+            int px=l+(h-l)/2;
+            int py=(m+n+1)/2-px;
+
+            //Left side elements
+            int x1=px==0?Integer.MIN_VALUE : nums1[px-1];
+            int x2=py==0?Integer.MIN_VALUE : nums2[py-1];
+
+            //Right side elements
+            int x3=px==m?Integer.MAX_VALUE : nums1[px];
+            int x4=py==n?Integer.MAX_VALUE : nums2[py];
 
 
+            if(x1<=x4 && x2<=x3){
 
-        return 1.0;
+                if((m+n)%2==0){
+
+                    return (Math.max(x1,x2) + Math.min(x3,x4))/2.0 ;
+
+                }else{
+
+                    return Math.max(x1,x2)*1.0;
+                }
+
+            }
+
+            if(x1 > x4){
+
+                h=px-1;
+
+            }else{
+
+                l=px+1;
+            }
+
+
+        }
+        return -1;
+
     }
 
 }
