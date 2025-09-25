@@ -28,9 +28,6 @@ public class Triangle {
     }
 
 
-
-
-
     public static int minimumTotal(List<List<Integer>> triangle) {
         int n=triangle.size();
         return solve(triangle,0,0,n);
@@ -47,8 +44,6 @@ public class Triangle {
         return triangle.get(row).get(col) + Math.min(solve(triangle,row+1,col,n),solve(triangle,row+1,col+1,n));
 
     }
-
-
 
 //Memoization
     private static  int solve(List<List<Integer>> triangle, int row, int col, int n,int[][] memo){
