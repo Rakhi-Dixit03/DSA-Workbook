@@ -9,7 +9,7 @@ public class KMP_Algo {
 
         String txt="ABABABABD";
         String pat="ABABD";
-        System.out.println("Indices of matching pattern found in  string txt : "+kmpAlgo(txt,pat).toString());
+        System.out.println("Indices of matching pattern found in  string txt : "+kmpAlgo(txt,pat));
     }
 
 
