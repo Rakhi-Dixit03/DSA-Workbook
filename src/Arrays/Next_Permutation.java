@@ -39,7 +39,7 @@ public class Next_Permutation {
                 int temp=arr[i];
                 arr[i]=arr[idx];
                 arr[idx]=temp;
-
+                 break;
             }
         }
 

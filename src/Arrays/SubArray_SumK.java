@@ -14,7 +14,7 @@ public class SubArray_SumK {
         System.out.println("Number of SubArrays whose Sum equal to k are  Solution 3 :  "+subArraySum_k3(arr,k));
     }
 
-    //Better Approach O(N^2)
+    //Brute Force  Approach O(N^3)
     public static int subArraySum_k1(int[] arr,int k){
         int n=arr.length;
         int count=0;

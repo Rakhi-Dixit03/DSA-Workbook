@@ -46,7 +46,7 @@ public class SlidingWin_Max {
         int n=arr.length;
 
         for(int i=0;i<n;i++){
-            //Checking for valid window size
+            //Checking for invalid window size
             if(!dq.isEmpty() && dq.peekFirst()<=i-k){
 
                 dq.pollFirst();
