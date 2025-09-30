@@ -21,6 +21,7 @@ public class AggressiveCows {
         for(int i=1;i<=max;i++){
 
                if(canPlace(stalls,i,cows)) continue;
+
                else{
                    return i-1;
                }
@@ -71,7 +72,6 @@ public class AggressiveCows {
 
 
         }
-
         return high;
     }
 

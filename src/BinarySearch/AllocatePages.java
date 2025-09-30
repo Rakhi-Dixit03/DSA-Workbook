@@ -37,6 +37,7 @@ public class AllocatePages {
             int mid=low+(high-low)/2;
 
             if(isValid(arr,k,mid)){
+
                 res=mid;
                 high=mid-1;
             }else{

@@ -15,7 +15,7 @@ public class KMP_Algo {
 
     public static List<Integer> kmpAlgo(String s, String pat){
 
-        int n=s.length();
+        int n=pat.length();
 
         int[] lps=new int[n];
 
