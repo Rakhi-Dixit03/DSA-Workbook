@@ -75,8 +75,8 @@ public class Combination_Sum1 {
 
                 if(tar<candidates[i])break;//Pruning
 
-                //Skipping Duplicates
-                if(i>idx && candidates[i]==candidates[i-1])continue;
+//                //Skipping Duplicates
+//                if(i>idx && candidates[i]==candidates[i-1])continue;
 
                 currList.add(candidates[i]);
 
