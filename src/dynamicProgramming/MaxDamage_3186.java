@@ -20,7 +20,7 @@ public class MaxDamage_3186 {
         int n=power.length;
 
         Map<Long,Long> map=new HashMap<>();
-        long dp[]=new long[n];
+        long[] dp=new long[n];
         java.util.Arrays.fill(dp,-1);
 
         //Storing freq in a map
@@ -122,14 +122,12 @@ public class MaxDamage_3186 {
 
         //Sort array
         java.util.Arrays.sort(nums);
-        long result=0;
 
-        int j=0;
         for(int m=nums.length-1;m>=0;m--){
 
 
             //Take
-            j= lowerBound(nums,nums[m]+3L, m>=n?0:m+1);
+            int j= lowerBound(nums,nums[m]+3L, m>=n?0:m+1);
 
             long take=dp[j]+nums[m]*map.getOrDefault(nums[m],0L);
 
