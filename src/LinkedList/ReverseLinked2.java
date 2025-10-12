@@ -52,7 +52,7 @@ public class ReverseLinked2 {
 
     public static void reverseList(ListNode head){
         //Doing modifications in the sublist
-        ListNode next=null,prev=null;
+        ListNode next,prev=null;
 
         while(head!=null){
 
