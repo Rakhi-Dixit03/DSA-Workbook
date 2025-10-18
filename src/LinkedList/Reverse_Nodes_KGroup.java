@@ -24,7 +24,7 @@ public class Reverse_Nodes_KGroup {
         ListNode prevTail=null;
         ListNode currHead=head;
         ListNode currTail=head;
-        ListNode nextHead=null;
+        ListNode nextHead;
 
         while(currHead!=null){
 
