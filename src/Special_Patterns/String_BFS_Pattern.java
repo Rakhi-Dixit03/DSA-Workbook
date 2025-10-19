@@ -72,8 +72,8 @@ public class String_BFS_Pattern {
     private void rotate(StringBuilder str,int b){
 
         str.reverse();
-        reverse(str,0,(0+b));
-        reverse(str,(0+b),str.length());
+        reverse(str,0,(b));
+        reverse(str,(b),str.length());
 
     }
 
@@ -82,9 +82,9 @@ public class String_BFS_Pattern {
 
         while(st<end){
 
-            char temp= (char)str.charAt(st);
+            char temp=str.charAt(st);
 
-            str.setCharAt(st,(char)str.charAt(end-1));
+            str.setCharAt(st,str.charAt(end-1));
 
             str.setCharAt(end-1,temp);
 
