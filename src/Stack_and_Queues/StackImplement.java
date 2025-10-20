@@ -17,7 +17,6 @@ public class StackImplement {
         System.out.println(st.peek());
         System.out.println(st.size());
 
-
     }
 
 }
