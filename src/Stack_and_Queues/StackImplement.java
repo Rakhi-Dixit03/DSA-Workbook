@@ -21,7 +21,6 @@ public class StackImplement {
 
 }
 
-
 //Stack Implementation using 1 queue
 
 class Stack{
@@ -39,14 +38,14 @@ class Stack{
 
     public void push(int val){
 
-        q.offer(val);
+        q.add(val);
         int size=q.size();
 
-        //Shift all the elements to the back of the queue except the newly added element
+        //move all the elements to the back of the queue except the newly added element
 
         for(int i=0;i<size-1;i++){
 
-            q.offer(q.poll());
+            q.add(q.poll());
 
         }
 
@@ -77,6 +76,11 @@ class Stack{
 
         return q.peek();
 
+    }
+
+    public boolean isEmpty(){
+
+        return q.isEmpty();
     }
 
     //Size of Stack
@@ -145,6 +149,11 @@ class Stack2{
             throw new IllegalStateException("Stack is empty!");
         }
         return q1.peek();
+
+    }
+
+    public boolean isEmpty(){
+        return q1.isEmpty();
 
     }
 
