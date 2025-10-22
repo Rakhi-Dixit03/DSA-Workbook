@@ -18,7 +18,7 @@ public class Reverse_1st_K_elements {
         q.add(6);
 
         reverseKEle(q,3);
-        System.out.println(q.toString());
+        System.out.println(q);
 
     }
 

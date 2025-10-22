@@ -43,7 +43,7 @@ public class First_Unique_Char {
     }
 
     //Using Queue
-    public static int uniqueCharIdx2(String str){
+    public static Integer uniqueCharIdx2(String str){
 
         java.util.Queue<Integer>q=new LinkedList<>();
         Map<Character,Integer> map=new HashMap<>();
@@ -65,7 +65,7 @@ public class First_Unique_Char {
             char ch=str.charAt(q.peek());
 
             if(map.get(ch)==1){
-                return (int)q.peek();
+                return q.peek();
             }else{
                 q.poll();
             }
