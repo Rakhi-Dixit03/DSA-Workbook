@@ -1,5 +1,7 @@
 package Stack_and_Queues;
 
+import java.util.Stack;
+
 public class Minimum_Stack {
 
     public static void main(String[] args) {
@@ -29,8 +31,8 @@ class MinStack {
 
     public MinStack() {
 
-        st=new java.util.Stack<>();
-        minStack =new java.util.Stack();
+        st=new Stack<>();
+        minStack =new Stack<>();
     }
 
     public void push(int val) {
@@ -41,7 +43,7 @@ class MinStack {
 
             minStack.push(val);
 
-        }else if(!minStack.isEmpty() && minStack.peek()>=val){
+        }else if(minStack.peek()>=val){
 
             minStack.push(val);
         }
