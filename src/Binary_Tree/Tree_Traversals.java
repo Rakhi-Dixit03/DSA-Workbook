@@ -16,7 +16,7 @@ public class Tree_Traversals {
 
 
     }
-    private static void  preOrder(TreeNode root ){
+    public static void  preOrder(TreeNode root ){
 
          //Base Case
         if(root==null)return;
