@@ -44,7 +44,7 @@ public class Morris_Traversal {
 
             } else {
 
-                TreeNode leftNode = curr.left;//Left Child's rightMost node
+                TreeNode leftNode = curr.left;//find Left Child's rightMost node
 
                 while (leftNode.right != null) {
 
