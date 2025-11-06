@@ -1,7 +1,9 @@
 package Binary_Tree;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class Max_Width_Of_BT {
 
@@ -12,6 +14,7 @@ public class Max_Width_Of_BT {
                 new TreeNode(3)),new TreeNode(7,new TreeNode(6), new TreeNode(9)));
 
         System.out.println("Maximum width is : "+maxWidthOfBT(root));
+        System.out.println("Max width : "+recursive(root));
     }
 
     //BFS TC-O(N) SC-(N)
@@ -59,6 +62,34 @@ public class Max_Width_Of_BT {
         return maxWidth;
     }
 
+
+
+//Recursive solution [DFS]
+    public static int recursive(TreeNode root){
+
+        if(root==null)return 0;
+
+        return helper(root,1,0,new ArrayList<>());
+
+    }
+
+    public static int  helper(TreeNode root,int idx,int level,List<Integer>list){
+
+        if(root==null)return 0;
+
+        if(level== list.size()){
+            list.add(idx);
+        }
+
+        int currWidth=idx-list.get(level)+1;
+
+        int left=helper(root.left,2*idx,level+1,list);
+        int right=helper(root.right,2*idx+1,level+1,list);
+        return Math.max(currWidth,Math.max(left,right));
+
+
+    }
+
 }
 
 //Storing  node and index
@@ -75,5 +106,3 @@ class Data{
     }
 
 }
-
-
