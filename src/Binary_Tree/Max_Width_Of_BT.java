@@ -69,7 +69,7 @@ public class Max_Width_Of_BT {
 
         if(root==null)return 0;
 
-        return helper(root,1,0,new ArrayList<>());
+        return helper(root,0,0,new ArrayList<>());
 
     }
 
@@ -83,8 +83,8 @@ public class Max_Width_Of_BT {
 
         int currWidth=idx-list.get(level)+1;
 
-        int left=helper(root.left,2*idx,level+1,list);
-        int right=helper(root.right,2*idx+1,level+1,list);
+        int left=helper(root.left,2*idx+1,level+1,list);
+        int right=helper(root.right,2*idx+2,level+1,list);
         return Math.max(currWidth,Math.max(left,right));
 
 
