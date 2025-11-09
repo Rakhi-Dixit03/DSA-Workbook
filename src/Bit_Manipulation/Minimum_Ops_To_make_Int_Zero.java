@@ -51,4 +51,29 @@ public class Minimum_Ops_To_make_Int_Zero {
     }
 
 
+
+    //2nd Question Easy one [Count Operations to obtain zero]
+
+    public static int countOperations(int num1, int num2) {
+
+        int numOps = 0;
+
+        //Euclidean Algorithm
+
+        while(num1!=0 && num2!=0){
+
+            numOps+=num1/num2;
+
+            num1%=num2;
+
+            //Swap numbers
+
+            num1=num1^num2;
+            num2=num1^num2;
+            num1=num1^num2;
+
+        }
+        return numOps;
+    }
+
 }
