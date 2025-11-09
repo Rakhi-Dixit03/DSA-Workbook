@@ -9,7 +9,7 @@ public class Top_View {
 
 
         TreeNode root=new TreeNode(1,new TreeNode(2,new TreeNode(4),
-                new TreeNode(5)),new TreeNode(3,new TreeNode(6),null));
+                new TreeNode(5,null,new TreeNode(6))),new TreeNode(3,null,new TreeNode(7)));
 
         System.out.println(topView(root));
 
@@ -17,6 +17,44 @@ public class Top_View {
     }
 
 
+    //Recursive Approach
+    static Map<Integer,TreeNode>map=new TreeMap<>();
+
+    public static List<Integer> topViewRecursive(TreeNode root){
+
+        List<Integer>ans=new ArrayList<>();
+
+        helper(root,0);
+
+
+        for(Map.Entry<Integer,TreeNode>entry:map.entrySet()){
+
+            ans.add(entry.getValue().val);
+
+        }
+        return ans;
+
+    }
+
+    public static void helper(TreeNode root,int line){
+
+        if(root==null)return;
+
+
+        if(line>0){
+            map.put(line,root);
+        }else{
+            map.putIfAbsent(line,root);
+        }
+
+        helper(root.left,line-1);
+        helper(root.right,line+1);
+
+
+    }
+
+
+    //Iterative Approach
    public static List<Integer> topView(TreeNode root){
 
         List<Integer> ans=new ArrayList<>();
