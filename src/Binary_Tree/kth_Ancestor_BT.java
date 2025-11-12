@@ -1,7 +1,5 @@
 package Binary_Tree;
 
-import com.sun.source.tree.Tree;
-
 public class kth_Ancestor_BT {
 
     public static void main(String[] args) {
