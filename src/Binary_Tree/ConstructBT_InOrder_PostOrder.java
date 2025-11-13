@@ -54,14 +54,14 @@ public class ConstructBT_InOrder_PostOrder {
         TreeNode root=new TreeNode(rootVal);
         idx--;
 
+       //Due to PostOrder[L,R,Root] Sequence we will build right subtree first,as going from right->left in preOrder Array
+
         root.right=solve(i+1,end,inorder,postorder);
         root.left=solve(st,i-1,inorder,postorder);
 
+
         return root;
     }
-
-
-
 
 
 }
