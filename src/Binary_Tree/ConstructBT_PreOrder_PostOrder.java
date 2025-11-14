@@ -10,19 +10,16 @@ public class ConstructBT_PreOrder_PostOrder {
         int[] preorder={1,2,4,5,3,6,7};
         int[] postorder={4,5,2,6,7,3,1};
 
-        System.out.println("Root Node of the tree : "+constructFromPrePost(preorder,postorder).val);
-
-
+        System.out.println("Constructed Tree is : ");
+        Tree_Traversals.preOrder(constructFromPrePost(preorder,postorder));
     }
-
-
    static Map<Integer,Integer>map=new HashMap<>();
 
     public  static TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
 
         int n=preorder.length;
 
-        //Storing inorder elements for faster lookup
+        //Storing postorder elements for faster lookup
         for (int i = 0; i < n; i++) {
             map.put(postorder[i], i);
         }
@@ -62,8 +59,6 @@ public class ConstructBT_PreOrder_PostOrder {
         return root;
 
     }
-
-
 
 
 }
