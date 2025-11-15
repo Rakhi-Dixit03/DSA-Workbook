@@ -27,7 +27,7 @@ public class Tree_Traversals {
 
     }
 
-    private static void inOrder(TreeNode root){
+    public static void inOrder(TreeNode root){
 
         //Base Case
         if(root==null)return;
