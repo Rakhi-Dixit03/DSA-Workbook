@@ -79,7 +79,7 @@ public class Search_In_2D {
     //Optimal Approach -1 O(M+N)
 
     public static boolean searchMatrix3(int[][] matrix, int ele) {
-        //picking bottom Right element as starting point
+        //picking bottom left element as starting point
         int n = matrix.length;
         int m = matrix[0].length;
 
@@ -123,7 +123,7 @@ public class Search_In_2D {
             //Finding 2D position of this mid 1D index
 
             int row=mid/m;//if we are assuming row Major standard
-            int col=mid%m;
+            int col=mid%m;//m is number of columns
 
             if(matrix[row][col]==ele){
                 return true;
