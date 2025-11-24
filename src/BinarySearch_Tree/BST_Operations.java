@@ -104,6 +104,7 @@ public class BST_Operations {
 
 
     TreeNode inOrderSucc(TreeNode root){
+
         if(root==null)return  null;
         TreeNode curr=root;
 
