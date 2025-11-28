@@ -14,10 +14,7 @@ public class Max_NumKDiv_Components {
 
         System.out.println("Maximum number of components divisible by k :  "+obj.maxKDivisibleComponents(5,edges,values,6));
 
-
-
     }
-
 
     int count = 0;
 
