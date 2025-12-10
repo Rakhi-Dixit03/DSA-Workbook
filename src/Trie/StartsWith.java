@@ -1,7 +1,5 @@
 package Trie;
 
-import Trie.*;
-
 import static Trie.TrieImpl.root;
 
 public class StartsWith {
