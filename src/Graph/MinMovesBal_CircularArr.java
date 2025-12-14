@@ -59,6 +59,8 @@ public class MinMovesBal_CircularArr {
 
         }
 
+        if(needyIdx==-1)return 0;//in case there is no negative element although problem guarantees one
+
         //Building a list of helpers along with their minimum distances(both straight and circular) from needy
         List<Pair> helpers = new ArrayList<>();
 
