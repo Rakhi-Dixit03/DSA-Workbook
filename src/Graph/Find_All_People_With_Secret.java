@@ -16,8 +16,6 @@ public class Find_All_People_With_Secret {
 
         System.out.println("All People with Secret :  "+findAllPeople(n,meetings,firstPer));
 
-
-
     }
 
    static class Pair{
