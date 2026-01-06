@@ -38,8 +38,13 @@ public class DirectedGraphImpl {
 
             int u = edge[0];
             int v = edge[1];
+            int wt=1;
 
-            graph[u].add(new Edge(u, v, 1));
+            if(edge.length==3){
+                wt=edge[2];
+            }
+
+            graph[u].add(new Edge(u, v, wt));
 
         }
 
