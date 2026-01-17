@@ -1,7 +1,5 @@
 package maths_problems;
 
-import java.sql.SQLOutput;
-
 public class Largest_Area_Inside_Two_Rectangles {
 
     public static void main(String[] args) {
