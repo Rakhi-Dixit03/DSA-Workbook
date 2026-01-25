@@ -19,6 +19,7 @@ public class Minimize_Max_Pair_Sum {
         int maxSum=Integer.MIN_VALUE;
         while(l<r){
 
+
             int sum=nums[l]+nums[r];
 
             if(sum>maxSum){
