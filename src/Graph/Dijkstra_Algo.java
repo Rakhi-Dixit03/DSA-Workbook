@@ -52,7 +52,7 @@ public class Dijkstra_Algo {
 
         }
 
-        pq.add(new Pair(0,0));//As distance from source to source is 0
+        pq.add(new Pair(src,0));//As distance from source to source is 0
 
 
         while(!pq.isEmpty()){
