@@ -1,98 +1,165 @@
 package Graph;
 
+import java.util.*;
+
+
+
 public class Min_Cost_To_Convert_String2 {
 
-    static class Trie {
+    static class Pair {
 
-        Trie[] child = new Trie[26];
-        int id = -1;
+        String des;
+        long cost;
+
+        public Pair(String des, long cost) {
+            this.des = des;
+            this.cost = cost;
+        }
+
     }
 
+    int n;
+    long BIG_VALUE = 10_000_000_000L;
 
-    private static final int INF = Integer.MAX_VALUE / 2;
+    TreeSet<Integer> lenSet;
+    Map<String, List<Pair>> adjList;//Graph
+    long[] dpMemo;//for memoization
+    String source;
+    String target;
 
-    private int add(Trie node, String word, int[] index) {
-        for (char ch : word.toCharArray()) {
-            int i = ch - 'a';
-            if (node.child[i] == null) {
-                node.child[i] = new Trie();
+    public long minimumCost(String source, String target, String[] original, String[] changed, int[] cost) {
+        n = source.length();
+
+        this.source = source;
+        this.target = target;
+        dpMemo = new long[1001];
+        Arrays.fill(dpMemo, -1);
+
+
+        //Build Graph
+        adjList = new HashMap<>();
+
+        for (int i = 0; i < original.length; i++) {
+
+            adjList.computeIfAbsent(original[i], k -> new ArrayList<>()).add(new Pair(changed[i], cost[i]));
+
+        }
+
+        //TreeSet for tracking the lengths of substrings in original
+
+        lenSet = new TreeSet<>();
+
+        for (String s : original) {
+
+            lenSet.add(s.length());
+
+        }
+
+        long result = solve(0);
+
+        return result == BIG_VALUE ? -1 : result;
+
+    }
+
+    //[solve] is a Recursive method
+    private long solve(int i) {
+
+        if (i >= n) {//[i] becomes out of bounds
+            return 0;
+        }
+
+        if (dpMemo[i] != -1) {
+            return dpMemo[i];
+        }
+
+        long resultCost = BIG_VALUE;
+
+        if (source.charAt(i) == target.charAt(i)) {//already matching chars(can skip)
+            resultCost = solve(i + 1);
+
+        }
+
+        //2nd option is to keep the same char and look for other subStrings
+
+        for (int len : lenSet) {
+
+            if (i + len > n) {//no more substrings
+                break;
             }
-            node = node.child[i];
-        }
-        if (node.id == -1) {
-            node.id = ++index[0];
-        }
-        return node.id;
-    }
 
-    private void update(long[] x, long y) {
-        if (x[0] == -1 || y < x[0]) {
-            x[0] = y;
-        }
-    }
+            String sourceSub = source.substring(i, i + len);
+            String tarSub = target.substring(i, i + len);
 
-    public long minimumCost(
-            String source,
-            String target,
-            String[] original,
-            String[] changed,
-            int[] cost
-    ) {
-        int n = source.length();
-        int m = original.length;
-        Trie root = new Trie();
-
-        int[] p = {-1};
-        int[][] G = new int[m * 2][m * 2];
-
-        for (int i = 0; i < m * 2; i++) {
-            java.util.Arrays.fill(G[i], INF);
-            G[i][i] = 0;
-        }
-
-        for (int i = 0; i < m; i++) {
-            int x = add(root, original[i], p);
-            int y = add(root, changed[i], p);
-            G[x][y] = Math.min(G[x][y], cost[i]);
-        }
-
-        int size = p[0] + 1;
-        for (int k = 0; k < size; k++) {
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    G[i][j] = Math.min(G[i][j], G[i][k] + G[k][j]);
-                }
-            }
-        }
-
-        long[] f = new long[n];
-        java.util.Arrays.fill(f, -1);
-        for (int j = 0; j < n; j++) {
-            if (j > 0 && f[j - 1] == -1) {
+            if (!adjList.containsKey(sourceSub)) {
                 continue;
             }
-            long base = (j == 0 ? 0 : f[j - 1]);
-            if (source.charAt(j) == target.charAt(j)) {
-                f[j] = f[j] == -1 ? base : Math.min(f[j], base);
+
+            //if map contains key then we will find the shortest path to reach tarSubString using dijkstra
+
+            long pathCost = dijkstra(sourceSub, tarSub);
+
+            if (pathCost == BIG_VALUE) {
+                //can't find the path,that substring was not right
+                continue;//try another subString
+
             }
 
-            Trie u = root;
-            Trie v = root;
-            for (int i = j; i < n; i++) {
-                u = u.child[source.charAt(i) - 'a'];
-                v = v.child[target.charAt(i) - 'a'];
-                if (u == null || v == null) {
-                    break;
-                }
-                if (u.id != -1 && v.id != -1 && G[u.id][v.id] != INF) {
-                    long newVal = base + G[u.id][v.id];
-                    if (f[i] == -1 || newVal < f[i]) {
-                        f[i] = newVal;
-                    }
-                }
-            }
+            resultCost = Math.min(resultCost, pathCost + solve(i + len));
+
         }
 
-        return f[n - 1];
+        return dpMemo[i] = resultCost;
+
     }
+
+    private long dijkstra(String src, String tar) {
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingLong(a -> a.cost));
+
+        Map<String, Long> result = new HashMap<>();//it stores Source to Target ka minCost
+
+        result.put(src, 0L);
+
+        pq.add(new Pair(src, 0L));//cost to go from src->src=0
+
+        while (!pq.isEmpty()) {
+
+            Pair curr = pq.poll();
+
+            String node = curr.des;
+            long currCost = curr.cost;
+
+            if (node.equals(tar)) {
+                break;
+            }
+
+            if (adjList.get(node) != null) {
+                for (Pair edge : adjList.get(node)) {
+
+                    String neighNode = edge.des;
+                    long edgeCost = edge.cost;
+
+                    if (!result.containsKey(neighNode) || currCost + edgeCost < result.get(neighNode)) {
+                        //update cost
+
+                        result.put(neighNode, (currCost + edgeCost));
+                        pq.add(new Pair(neighNode, (currCost + edgeCost)));
+
+                    }
+
+                }
+            }
+
+        }
+
+        long finalCost = BIG_VALUE;
+        if (result.get(tar) != null) {
+            finalCost = result.get(tar);
+
+        }
+
+        return finalCost;
+
+    }
+
 }
