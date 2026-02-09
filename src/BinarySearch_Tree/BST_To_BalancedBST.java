@@ -80,4 +80,55 @@ public class BST_To_BalancedBST {
         return root;
 
     }
+
+    //----------------------------
+
+    //Can Also Do this way,just manipulating the pointers
+
+
+    int n;
+    ArrayList<TreeNode> list = new ArrayList<>();
+
+    public TreeNode balanceBST(TreeNode root) {
+
+        inOrder(root);
+        n = list.size();//Number of nodes in the BST
+
+        //Got the Sorted List, after it, we can Build our Balanced BST out of this Sorted list
+        return helper(0, n - 1);
+
+    }
+
+
+    private void inOrder(TreeNode root) {
+
+        //Base Case
+        if (root == null)
+            return;
+
+        inOrder(root.left);
+        //Processing the root
+        list.add(root);
+        inOrder(root.right);
+
+    }
+
+
+    private TreeNode helper(int l, int h) {
+
+        if (l > h) {//it means that we don't have more nodes
+            return null;
+        }
+
+        int mid = l + (h - l) / 2;
+
+        TreeNode root = list.get(mid);
+        root.left = helper(l, mid - 1);
+        root.right = helper(mid + 1, h);
+
+        return root;
+
+    }
+
+
 }
