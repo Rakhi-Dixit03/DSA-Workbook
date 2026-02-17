@@ -23,17 +23,18 @@ public class Longest_Balanced_Arr_2 {
     void updateRange(int start, int end, int i, int l, int r, int val) {
         propagate(i, l, r);
 
-        if (l > end || r < start) return;
+        if (l > end || r < start) return;//Completely out of range
 
-        if (l >= start && r <= end) {
+        if (l >= start && r <= end) {//Overlap Condition
             lazy[i] += val;
             propagate(i, l, r);
             return;
         }
+        //Partial Overlap
 
         int mid = (l + r) / 2;
-        updateRange(start, end, 2 * i + 1, l, mid, val);
-        updateRange(start, end, 2 * i + 2, mid + 1, r, val);
+        updateRange(start, end, 2 * i + 1, l, mid, val);//left child
+        updateRange(start, end, 2 * i + 2, mid + 1, r, val);//right child
 
         segMin[i] = Math.min(segMin[2 * i + 1], segMin[2 * i + 2]);
         segMax[i] = Math.max(segMax[2 * i + 1], segMax[2 * i + 2]);
