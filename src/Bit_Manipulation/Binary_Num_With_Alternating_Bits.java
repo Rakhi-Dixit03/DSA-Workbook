@@ -6,9 +6,9 @@ public class Binary_Num_With_Alternating_Bits {
 
         Binary_Num_With_Alternating_Bits obj=new Binary_Num_With_Alternating_Bits();
 
-        System.out.println("Does N have Alternating Bits : "+obj.hasAlternatingBits1(5));
-        System.out.println("Does N have Alternating Bits : "+obj.hasAlternatingBits1(8));
-        System.out.println("Does N have Alternating Bits : "+obj.hasAlternatingBits1(21));
+        System.out.println("Does N have Alternating Bits ? : "+obj.hasAlternatingBits1(5));
+        System.out.println("Does N have Alternating Bits ?: "+obj.hasAlternatingBits2(8));
+        System.out.println("Does N have Alternating Bits ? : "+obj.hasAlternatingBits3(21));
     }
     public boolean hasAlternatingBits1(int n) {
 
