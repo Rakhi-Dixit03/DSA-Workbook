@@ -4,6 +4,7 @@ public class Binary_Gap {
 
     public static void main(String[] args) {
         System.out.println("Maximum Binary Gap :  "+binaryGap(10));
+        System.out.println("Maximum Binary Gap :  "+binaryGap1(10));
     }
     //TC-O(N)
     public static int binaryGap(int n) {
