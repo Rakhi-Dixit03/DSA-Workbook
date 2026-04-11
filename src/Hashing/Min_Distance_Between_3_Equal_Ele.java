@@ -40,3 +40,12 @@ public class Min_Distance_Between_3_Equal_Ele {
     }
 
 }
+
+//TC-O(N)
+//How the  time complexity is O(N)?
+//Each index from the original array appears exactly once in some list.
+// So if you sum up the sizes of all lists:
+//total elements across all lists = N ,so overall the map loop is covering all [N] elements of the array
+// 2nd Variation  3741 can also be solved with the same approach
+//Group indices by value and find the minimum distance between the
+// first and third occurrence in any sorted group.
