@@ -1,7 +1,8 @@
 package maths_problems;
 
 public class Rotate_Function {
-
+    //TC - O(N)
+    //Approach : Deriving a mathematical recurrence relation to calculate rotation function values in constant time per step.
     public static int maxRotateFunction(int[] nums) {
         int n =nums.length;
         int F = 0;
