@@ -1,7 +1,10 @@
 package LinkedList;
 
 public class Rotate_LL {
-
+   //TC- O(N)
+    //SC-O(1)
+   //Approach :  Calculating list length, using modulo arithmetic for effective rotations,
+    // and temporarily forming a cycle to rotate efficiently.
 
     public static void main(String[] args) {
 
@@ -13,7 +16,7 @@ public class Rotate_LL {
 
     public static ListNode rotateRight(ListNode head, int k) {
 
-        if(head==null || k==0)return head;
+        if(head==null || head.next == null ||  k==0)return head;
 
         //Calculating the size of the list
         int n=1;//size
@@ -42,7 +45,7 @@ public class Rotate_LL {
 
         }
 
-        //Break cycle
+        //Break the cycle
 
         head=tail.next;
         tail.next=null;
