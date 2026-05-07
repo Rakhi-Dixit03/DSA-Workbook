@@ -1,7 +1,7 @@
 package dynamicProgramming;
 
 //TC- O(M*N*K)
-//TC - O(M*N*N)
+//SC - O(M*N*N)
 
 public class Max_Path_Score_In_A_Grid {
 
