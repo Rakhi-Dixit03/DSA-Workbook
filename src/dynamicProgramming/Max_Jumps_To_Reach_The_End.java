@@ -3,7 +3,7 @@ package dynamicProgramming;
 //Using bottom-up dynamic programming to find the maximum number of valid jumps
 // by checking all previous reachable indices.
 //2770
-//TC-O(N)
+//TC-O(N*N)
 public class Max_Jumps_To_Reach_The_End {
 
 
