@@ -9,15 +9,9 @@ public class Is_Array_Good {
     public static boolean isGood(int[] numbers) {
 
         int n = numbers.length;
-        int max = Integer.MIN_VALUE;
+        int max = n-1;
 
         boolean []exist = new boolean[n + 1];
-
-        for (int j : numbers) {
-
-            max = Math.max(max, j);
-
-        }
 
         if (n != (max + 1))
             return false;
