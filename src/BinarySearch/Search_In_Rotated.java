@@ -1,5 +1,8 @@
 package BinarySearch;
 
+//Ques : 33
+//TC-O(logN)
+//Modified binary search : identifying the sorted half to determine target presence in a rotated array.
 public class Search_In_Rotated {
 
     public static void main(String[] args) {
