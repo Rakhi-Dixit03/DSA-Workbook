@@ -3,7 +3,7 @@ package Graph;
 import java.util.*;
 //TC - O(N) N-number of nodes in the tree
 //SC-O(V + E) + O(H) stack space
-public class Num_Of_Ways_To_Assign_Edge_Weights {
+public class Num_Of_Ways_To_Assign_Edge_Weights_1 {
 
     static long mod = 1_000_000_007;
 
@@ -69,7 +69,7 @@ public class Num_Of_Ways_To_Assign_Edge_Weights {
 
     public static void main(String[] args) {
 
-        Num_Of_Ways_To_Assign_Edge_Weights obj=new Num_Of_Ways_To_Assign_Edge_Weights();
+        Num_Of_Ways_To_Assign_Edge_Weights_1 obj=new Num_Of_Ways_To_Assign_Edge_Weights_1();
 
         System.out.println("Number of ways to assign edge weights are  : "+obj.assignEdgeWeights(new int[][]{{1,2},{1,3},{3,4},{3,5}}));
     }
