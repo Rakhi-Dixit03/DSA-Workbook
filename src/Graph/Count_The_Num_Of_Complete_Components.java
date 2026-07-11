@@ -3,7 +3,7 @@ package Graph;
 import java.util.*;
 
 //TC - O(V+E)
-//SC -
+//SC - O(V+E)
 public class Count_The_Num_Of_Complete_Components {
 
     public static int countCompleteComponents(int n, int[][] edges) {
