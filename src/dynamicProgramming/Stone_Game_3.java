@@ -2,32 +2,113 @@ package dynamicProgramming;
 
 public class Stone_Game_3 {
 
-    public static String stoneGameIII(int[] stoneValue) {
+    int n;
+    int[][] memo;
 
-        int n = stoneValue.length;
+    int solve(int person, int i, int[] nums) {
 
-        int[] dp = new int[n + 1];
+        if (i >= n)
+            return 0;
 
-        for (int i = n - 1; i >= 0; i--) {
+        if (memo[person][i] != -1)
+            return memo[person][i];
 
-            dp[i] = Integer.MIN_VALUE;
-            int sum = 0;
+        int result = (person == 1) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+        int score = 0;
 
-            for (int j = i; j < Math.min(n, i + 3); j++) {
+        for (int x = 1; x <= Math.min(n - i, 3); x++) {
+            score += nums[i + x - 1];
 
-                sum += stoneValue[j];
+            if (person == 1) {//Alice
 
-                dp[i] = Math.max(dp[i], sum - dp[j + 1]);
+                result = Math.max(result, score + solve(0, i + x, nums));
+
+            } else {//Bob
+
+                result = Math.min(result, solve(1, i + x, nums));
+
             }
+
         }
 
-        if (dp[0] > 0) return "Alice";
-        if (dp[0] < 0) return "Bob";
+        return memo[person][i] = result;
+
+    }
+
+    public String stoneGameIII(int[] stoneValue) {
+
+        n = stoneValue.length;
+        memo = new int[2][n + 1];
+
+        for (int[] row : memo) {
+            java.util.Arrays.fill(row, -1);
+        }
+
+        int AliceScore = solve(1, 0, stoneValue);
+
+        int total = 0;
+
+        for (int val : stoneValue) {
+            total += val;
+        }
+
+        int BobScore = total - AliceScore;
+
+        if (AliceScore > BobScore)
+            return "Alice";
+        if (AliceScore < BobScore)
+            return "Bob";
         return "Tie";
     }
 
     public static void main(String[] args) {
-        System.out.println("Winner : "+stoneGameIII(new int[]{1,2,3,7}));
+        Stone_Game_3 obj = new Stone_Game_3();
+        System.out.println("Winner : "+obj.stoneGameIII(new int[]{1,2,3,7}));
+        System.out.println("Winner : "+obj.stoneGameIII_2(new int[]{1,2,3,7}));
+
     }
 
+
+    //2nd Approach
+
+    int[] dp;
+
+
+    int solve(int i,int[] stones){
+        if (i >= n)
+            return 0;
+
+        if(dp[i]!=-1)return dp[i];
+
+        int res= Integer.MIN_VALUE;
+        res = Math.max(res,stones[i]-solve(i+1,stones));
+
+        if(i+1< n)
+            res= Math.max(res,stones[i]+stones[i+1]-solve(i+2,stones));
+
+        if(i+2< n)
+            res= Math.max(res,stones[i]+stones[i+1]+stones[i+2]-solve(i+3,stones));
+
+
+        return dp[i]=res;
+
+    }
+
+    public String stoneGameIII_2(int[] stoneValue) {
+
+        n = stoneValue.length;
+        dp = new int[n];
+
+        java.util.Arrays.fill(dp, -1);
+
+
+        int diff = solve(0, stoneValue);
+
+
+        if (diff>0)
+            return "Alice";
+        if (diff <0)
+            return "Bob";
+        return "Tie";
+    }
 }
